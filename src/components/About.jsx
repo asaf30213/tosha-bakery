@@ -1,7 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const images = [
+  'about-1.webp',
+  'about-3.webp',
+  'about-4.webp',
+];
 
 export default function About() {
   const ref = useRef();
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -12,17 +19,34 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="about" className="section about" ref={ref}>
       <div className="about-grid">
         <div className="about-img-wrap reveal">
-          <div className="about-img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" strokeWidth="1">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-              <circle cx="9" cy="9" r="1" fill="var(--purple)"/>
-              <circle cx="15" cy="9" r="1" fill="var(--purple)"/>
-            </svg>
+          {images.map((img, i) => (
+            <img
+              key={img}
+              src={`${import.meta.env.BASE_URL}${img}`}
+              alt={`תושה בייקרי ${i + 1}`}
+              className={`about-slide${i === current ? ' active' : ''}`}
+            />
+          ))}
+          <div className="about-dots">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                className={`about-dot${i === current ? ' active' : ''}`}
+                onClick={() => setCurrent(i)}
+                aria-label={`תמונה ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
 

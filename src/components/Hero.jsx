@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="hero-deco hero-deco-3" />
 
       <div className="hero-content">
-        <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="Tosha Bakery" className="hero-logo" />
+        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Tosha Bakery" className="hero-logo" />
         <h1>
           <span>Tosha</span> Bakery
         </h1>

@@ -26,7 +26,7 @@ export default function Navbar() {
     <>
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
         <a href="#" className="nav-logo">
-          <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="Tosha Bakery" />
+          <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Tosha Bakery" />
           <span className="nav-logo-text">Tosha Bakery</span>
         </a>
 
